@@ -1,0 +1,45 @@
+As a Customer
+in order to choose my dinner
+I must be able to view multiple dishes.
+
+As a Customer
+in order to have a complete meal
+I need to be able to pick between Starters, Mains and Desserts.
+
+As a Customer
+in order to check out
+I need to have a user login.
+
+As a Customer
+in order to place an order
+I need to be able to add dishes to my cart.
+
+As a Customer
+in order to know how much I need to pay
+I need to see a total price.
+
+As a Customer
+in order to know when to pick up my food
+I need to be able to see a pick-up time.
+
+As a (restaurant) Owner
+in order to sell food
+I need access to a protected part of the site.
+
+As a Owner
+in order to sell food
+I need to be able to set information about my restaurant.
+
+As a restaurant Owner
+in order to set up my menu
+I need to be able to add Dishes.
+
+As a restaurant Owner
+in order to clarify my menu
+I need to be able to categorize my dishes into Starters, Mains and Desserts.
+
+
+(It would be nice if)
+As a restaurant Owner
+in order to update my menu
+I could change or delete my dishes.
