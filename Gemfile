@@ -11,7 +11,7 @@ gem 'shotgun', '0.9.1'
 gem 'data_mapper'
 gem 'pg'
 gem 'dm-postgres-adapter'
-gem 'pry'
+
 
 # gem 'dm-core', '1.2.1'
 # gem 'dm-sqlite-adapter', '1.2.0'
@@ -23,6 +23,7 @@ gem 'pry'
 # gem 'dm-validations', '1.2.0'
 
 group :development, :test do
+  gem 'pry'
   gem 'dotenv'
   gem 'cucumber'
   gem 'rspec'
