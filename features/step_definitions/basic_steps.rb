@@ -11,12 +11,12 @@ Then(/^I should be on the registration page$/) do
 end
 
 When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |element, text|
-  fill_in('Username', with: 'text')
-  fill_in('Password', with: 'text')
+  fill_in('Username', with: text)
+  fill_in('Password', with: text)
 end
 
 When(/^I click "([^"]*)" button$/) do |button|
-  click_button('Log In')
+  click_button(button)
 end
 
 Then(/^I should see "([^"]*)"$/) do |text|
