@@ -1,5 +1,5 @@
 require 'data_mapper'
-require 'rspec'
+
 
 class User
   include DataMapper::Resource
