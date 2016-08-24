@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 gem 'sinatra', '1.3.4'
+# gem 'padrino', '~> 0.13.0'
 gem 'sinatra-flash', '0.3.0', require: 'sinatra/flash'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'sinatra_warden'
@@ -21,5 +22,4 @@ group :development, :test do
   gem 'dm-rspec'
   gem 'database_cleaner'
   gem 'launchy'
-  # gem 'sinatra-contrib'
 end
