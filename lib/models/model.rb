@@ -1,3 +1,5 @@
+require 'data_mapper'
+
 
 class User
   include DataMapper::Resource
@@ -15,5 +17,3 @@ class User
     end
   end
 end
-
-
