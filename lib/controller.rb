@@ -5,11 +5,6 @@ require_relative 'helpers/data_mapper'
 require_relative 'helpers/warden'
 require 'pry'
 
-
-
-
-
-
 class SlowFood < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
@@ -58,6 +53,8 @@ class SlowFood < Sinatra::Base
     erb :login
   end
 
+  # Login in should direct to logged-in page where you can add food, etc.
+
   post '/auth/login' do
     env['warden'].authenticate!
     flash[:success] = "Successfully logged in #{current_user.username}"
@@ -65,6 +62,7 @@ class SlowFood < Sinatra::Base
       redirect '/'
     else
       redirect session[:return_to]
+      # Perhaps we need a return to '/' here?
     end
   end
 
