@@ -9,3 +9,16 @@ end
 Then(/^I should be on the registration page$/) do
   expect(current_path).to eq '/auth/login'
 end
+
+When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |element, text|
+  fill_in('Username', with: 'text')
+  fill_in('Password', with: 'text')
+end
+
+When(/^I click "([^"]*)" button$/) do |button|
+  click_button('Log In')
+end
+
+Then(/^I should see "([^"]*)"$/) do |text|
+  expect(page).to have_content(text)
+end
