@@ -47,14 +47,13 @@ describe User do
   describe "Registering sad path" do
     before do
       @user = User.new()
-      @user.save
     end
 
-    xit 'should throw an error if there is no username entered' do
-
+    it 'should throw an error if we try to create a user with no username' do
+      expect{@user.save}.to raise_error("you need to enter a username")
     end
 
-    xit 'should throw an error if there is no password entered' do
+    xit 'should throw an error if we try to create a user with no password' do
 
     end
 
