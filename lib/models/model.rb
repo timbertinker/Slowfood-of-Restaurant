@@ -8,6 +8,24 @@ class User
   property :password, BCryptHash
   property :admin, Boolean, default: false
 
+  # case
+  # when params['user']['username'] == ""
+  #   flash[:error] = "you need to enter a username"
+  #   redirect session[:return_to]
+  # when params['user']['password'] == ""
+  #   flash[:error] = "you need to enter a password"
+  #   redirect session[:return_to]
+  # else
+  #   @user = User.new
+  #   @user.username = params['user']['username']
+  #   @user.password = params['user']['password']
+  #   @user.save
+  #   env['warden'].authenticate!
+  #   flash[:success] = "Welcome to our restaurant, #{@user.username}!"
+  #   redirect '/'
+  # end
+
+  # We don't actually use this method anywhere. Should it be connected to Warden? Or should we just get rid of it?
   def authenticate(attempted_password)
     if self.password == attempted_password
       true
