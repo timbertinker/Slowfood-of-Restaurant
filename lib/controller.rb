@@ -71,8 +71,10 @@ class SlowFood < Sinatra::Base
     case
     when params['user']['username'] == ""
       flash[:error] = "you need to enter a username"
+      redirect session[:return_to]
     when params['user']['password'] == ""
       flash[:error] = "you need to enter a password"
+      redirect session[:return_to]
     else
       @user = User.new # get rid of this hard-coding and replace
       @user.username = params['user']['username']
