@@ -8,12 +8,13 @@ class User
   property :password, BCryptHash
   property :admin, Boolean, default: false
 
-  # binding.pry
-
   before :save do
     case
     when (self.username).nil?
       raise "you need to enter a username"
+    when (self.password).nil?
+      flash[:error] = "you need to enter a password"
+      # redirect session[:return_to]
     else
     end
   end

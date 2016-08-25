@@ -53,8 +53,9 @@ describe User do
       expect{@user.save}.to raise_error("you need to enter a username")
     end
 
-    xit 'should throw an error if we try to create a user with no password' do
-
+    it 'should throw an error if we try to create a user with no password' do
+      @user.username = "mitchell"
+      expect{@user.save}.to raise_error("you need to enter a password")
     end
 
   end
