@@ -59,11 +59,26 @@ class SlowFood < Sinatra::Base
     erb :login
   end
 
+  get '/auth/register' do
+    erb :register
+  end
+
   # Login in should direct to logged-in page where you can add food, etc.
 
   post '/auth/login' do
     env['warden'].authenticate!
     flash[:success] = "Successfully logged in #{current_user.username}"
+    if session[:return_to].nil?
+      redirect '/'
+    else
+      redirect session[:return_to]
+      # Perhaps we need a return to '/' here?
+    end
+  end
+
+  post '/auth/register' do
+    env['warden'].authenticate!
+    flash[:success] = "Welcome to our restaurant!"
     if session[:return_to].nil?
       redirect '/'
     else
