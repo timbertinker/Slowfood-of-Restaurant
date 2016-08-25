@@ -7,8 +7,7 @@ Scenario: I want to register (as a Visitor)
   When I fill in "username" with "david"
   And I fill in "password" with "craftacademy"
   And I click "Register" button
-  # We are hard-coding 'david' into our post function but we need to get the information from the text fields before we post and somehow send them into our post function.
-  Then I should see "Welcome to our restaurant!"
+  Then I should see "Welcome to our restaurant, david!"
 
   # And I click "Log In" button
   # Then I should see "Successfully logged in admin"
