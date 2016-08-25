@@ -9,8 +9,14 @@ Scenario: I want to register (as a Visitor)
   And I click "Register" button
   Then I should see "Welcome to our restaurant, david!"
 
-Scenario: I need a password to successfully register
+Scenario: I try to register without entering a password
   Given I am on the registration page
   When I fill in "username" with "whatever"
   And I click "Register" button
   Then I should see "you need to enter a password"
+
+  Scenario: I try to register without entering a username
+    Given I am on the registration page
+    When I fill in "password" with "passwordtime"
+    And I click "Register" button
+    Then I should see "you need to enter a username"
