@@ -15,8 +15,7 @@ describe User do
 
     #this test is a false positive:
     xit 'throws an error when the wrong password is entered' do
-      expect{@user.authenticate("monekys")}.to raise_error("That username and password combination does not exist")
-      binding.pry
+      expect{@user.authenticate("monkeys")}.to raise_error("That username and password combination does not exist")
     end
 
     it 'user should have a username' do

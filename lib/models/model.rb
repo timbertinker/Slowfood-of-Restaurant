@@ -9,17 +9,7 @@ class User
   property :admin, Boolean, default: false
 
   before :save do
-    # case
-    # # when self.nil?
-    # #   raise "Something has gone terribly wrong."
-    # when (self.username).nil?
-    #   raise "you need to enter a username"
-    # when (self.password).nil?
-    #   raise "you need to enter a password"
-    #   # redirect session[:return_to]
-    # else
-    # end
-
+    # This is where I had the case statement that is just not how you use a case statement. Made it this if statement here and the tests run green.
     if self.username.nil? && self.password.nil?
       raise "No user information entered."
     elsif self.username.nil?
@@ -27,29 +17,20 @@ class User
     elsif self.password.nil?
       raise "you need to enter a password"
     else
-      # register the user
+      # register the user. Possibly some or all of this:
+      # @user = User.new
+      # @user.username = params['user']['username']
+      # @user.password = params['user']['password']
+      # @user.save
+      # env['warden'].authenticate!
+      # flash[:success] = "Welcome to our restaurant, #{@user.username}!"
+      # redirect '/'
     end
   end
 
-  # case
-  # when (self.username).nil?
-  #   raise "you need to enter a username"
-    # redirect session[:return_to]
-  # when params['user']['password'] == ""
-  #   flash[:error] = "you need to enter a password"
-  #   redirect session[:return_to]
-  # else
-    # @user = User.new
-    # @user.username = params['user']['username']
-    # @user.password = params['user']['password']
-    # @user.save
-    # env['warden'].authenticate!
-    # flash[:success] = "Welcome to our restaurant, #{@user.username}!"
-    # redirect '/'
-  # end
-
   # We don't actually use this method anywhere. Should it be connected to Warden? Or should we just get rid of it?
   def authenticate(attempted_password)
+    binding.pry
     if self.password == attempted_password
       true
     else
