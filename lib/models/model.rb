@@ -9,15 +9,25 @@ class User
   property :admin, Boolean, default: false
 
   before :save do
-    case
-    # when self.nil?
-    #   raise "Something has gone terribly wrong."
-    when (self.username).nil?
+    # case
+    # # when self.nil?
+    # #   raise "Something has gone terribly wrong."
+    # when (self.username).nil?
+    #   raise "you need to enter a username"
+    # when (self.password).nil?
+    #   raise "you need to enter a password"
+    #   # redirect session[:return_to]
+    # else
+    # end
+
+    if self.username.nil? && self.password.nil?
+      raise "No user information entered."
+    elsif self.username.nil?
       raise "you need to enter a username"
-    when (self.password).nil?
+    elsif self.password.nil?
       raise "you need to enter a password"
-      # redirect session[:return_to]
     else
+      # register the user
     end
   end
 
