@@ -1,5 +1,5 @@
 Given(/^I am on the registration page$/) do
-  visit '/register'
+  visit '/auth/register'
 end
 
 When(/^I click the "([^"]*)" button$/) do |link|
