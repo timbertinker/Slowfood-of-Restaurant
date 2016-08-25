@@ -8,7 +8,7 @@ Scenario: I want to register (as a Visitor)
   And I fill in "Password:" with "craftacademy"
   And I click "Register" button
   # A test that proves that we've created a new user
-#  Then I should see "Welcome to our restaurant!"
+  Then I should see "Welcome to our restaurant!"
 
   # And I click "Log In" button
   # Then I should see "Successfully logged in admin"
