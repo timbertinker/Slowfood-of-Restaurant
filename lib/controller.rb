@@ -19,6 +19,12 @@ class SlowFood < Sinatra::Base
    @user.save
   end
 
+  if User.count == 1
+   @user = User.create(username: "david")
+   @user.password = "craftacademy"
+   @user.save
+  end
+
   use Warden::Manager do |config|
     # Tell Warden how to save our User info into a session.
     # Sessions can only take strings, not Ruby code, we'll store
