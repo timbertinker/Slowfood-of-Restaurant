@@ -15,6 +15,8 @@ describe User do
     expect{@user.authenticate("monekys")}.to raise_error("That username and password combination does not exist")
   end
 
+  # There are more sad-path things to test but I realized I should be doing that in a separate feature.
+
   it 'user should have a username' do
     expect(@user.username).to eq "user"
   end
