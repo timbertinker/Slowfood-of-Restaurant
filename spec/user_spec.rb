@@ -38,8 +38,8 @@ describe User do
       expect(User.first(username: "user2")[:username]).to eq "user2"
     end
 
-    xit 'should have a password' do
-
+    it 'should have a password' do
+      expect(User.first(username: "user2")[:password]).to eq "1234"
     end
 
   end
