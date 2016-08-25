@@ -11,3 +11,9 @@ Scenario: I want to register (as a Visitor)
 
   # And I click "Log In" button
   # Then I should see "Successfully logged in admin"
+
+Scenario: I need a password to successfully register
+  Given I am on the registration page
+  When I fill in "username" with "whatever"
+  And I click "Register" button
+  Then I should see "you need to enter a password"

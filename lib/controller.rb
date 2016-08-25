@@ -68,12 +68,20 @@ class SlowFood < Sinatra::Base
   end
 
   post '/auth/register' do
-    @user = User.new # get rid of this hard-coding and replace
-    @user.username = params['user']['username']
-    @user.password = params['user']['password']
-    @user.save
-    env['warden'].authenticate!
-    flash[:success] = "Welcome to our restaurant, #{@user.username}!"
+    case
+    when params['user']['username'] == ""
+      flash[:error] = "you need to enter a username"
+    when params['user']['password'] == ""
+      flash[:error] = "you need to enter a password"
+    else
+      @user = User.new # get rid of this hard-coding and replace
+      @user.username = params['user']['username']
+      @user.password = params['user']['password']
+      @user.save
+      env['warden'].authenticate!
+      flash[:success] = "Welcome to our restaurant, #{@user.username}!"
+    end
+
     # if session[:return_to].nil?
     #   redirect '/'
     # else
