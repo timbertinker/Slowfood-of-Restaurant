@@ -76,12 +76,13 @@ class SlowFood < Sinatra::Base
       flash[:error] = "you need to enter a password"
       redirect session[:return_to]
     else
-      @user = User.new # get rid of this hard-coding and replace
+      @user = User.new
       @user.username = params['user']['username']
       @user.password = params['user']['password']
       @user.save
       env['warden'].authenticate!
       flash[:success] = "Welcome to our restaurant, #{@user.username}!"
+      redirect '/'
     end
 
     # if session[:return_to].nil?

@@ -4,7 +4,7 @@
 <body>
 <title>Sinatra Warden</title>
 
-<h1>User authentication</h1>
+<h1>Restaurant Order Awesomeness</h1>
 
 <p>
   <% if current_user %>
@@ -12,7 +12,8 @@
     <a href="/auth/logout">Log Out</a></p>
   <% else %>
 
-    <a href="/auth/login">Log In</a>
+    <a href="/auth/login">Log In</a><br>
+    <a href="/auth/register">Register</a><br>
   <% end %>
 
   <% if flash[:success] %>

@@ -13,7 +13,7 @@ class User
     if self.password == attempted_password
       true
     else
-      false
+      raise "That username and password combination does not exist"
     end
   end
 end
