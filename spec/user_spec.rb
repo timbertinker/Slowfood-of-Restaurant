@@ -44,19 +44,28 @@ describe User do
 
   end
 
-  describe "Registering sad path" do
+  describe "Registering with no username" do
     before do
       @user = User.new()
     end
+
+    # it 'throws an error if we do not create a user' do
+    #   expect{@anotheruser.save} to raise_error("Something has gone terribly wrong.")
+    # end
 
     it 'should throw an error if we try to create a user with no username' do
       expect{@user.save}.to raise_error("you need to enter a username")
     end
 
-    it 'should throw an error if we try to create a user with no password' do
-      @user.username = "mitchell"
-      expect{@user.save}.to raise_error("you need to enter a password")
+  end
+
+  describe "Registering with no password" do
+    before do
+      @user = User.new(username: "mitchell")
     end
 
+    it 'should throw an error if we try to create a user with no password' do
+      expect{@user.save}.to raise_error("you need to enter a password")
+    end
   end
 end

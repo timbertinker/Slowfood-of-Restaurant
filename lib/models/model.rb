@@ -10,10 +10,12 @@ class User
 
   before :save do
     case
+    # when self.nil?
+    #   raise "Something has gone terribly wrong."
     when (self.username).nil?
       raise "you need to enter a username"
     when (self.password).nil?
-      flash[:error] = "you need to enter a password"
+      raise "you need to enter a password"
       # redirect session[:return_to]
     else
     end
