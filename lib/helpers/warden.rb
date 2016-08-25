@@ -15,3 +15,6 @@ Warden::Strategies.add(:password) do
     end
   end
 end
+
+
+# params = [{username: amber, password: "amber"}]

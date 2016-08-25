@@ -10,7 +10,6 @@ class SlowFood < Sinatra::Base
   register Sinatra::Warden
   set :session_secret, "supersecret"
 
-  #Create a test User
   if User.count == 0
    @user = User.create(username: "admin")
    @user.password = "admin"
@@ -51,6 +50,10 @@ class SlowFood < Sinatra::Base
     erb :login
   end
 
+  get '/auth/register' do
+    erb :register
+  end
+
   # Login in should direct to logged-in page where you can add food, etc.
 
   post '/auth/login' do
@@ -62,6 +65,21 @@ class SlowFood < Sinatra::Base
       redirect session[:return_to]
       # Perhaps we need a return to '/' here?
     end
+  end
+
+  post '/auth/register' do
+    @user = User.new # get rid of this hard-coding and replace
+    @user.username = params['user']['username']
+    @user.password = params['user']['password']
+    @user.save
+    env['warden'].authenticate!
+    flash[:success] = "Welcome to our restaurant, #{@user.username}!"
+    # if session[:return_to].nil?
+    #   redirect '/'
+    # else
+    #   redirect session[:return_to]
+    #   # Perhaps we need a return to '/' here?
+    # end
   end
 
   get '/auth/logout' do
