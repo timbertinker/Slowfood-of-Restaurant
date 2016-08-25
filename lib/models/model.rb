@@ -16,4 +16,12 @@ class User
       false
     end
   end
+
+  def create_owner
+    @owner = User.create(username: "owner")
+    @owner.password = "owner"
+    @owner.admin = true
+    @owner.save
+  end
+
 end
