@@ -14,7 +14,7 @@ it 'should have a price' do
 end
 
 it 'should have a category' do
-
+  expect(Dish.first(name: @dish.name).category).to eq "main"
 end
 
 
