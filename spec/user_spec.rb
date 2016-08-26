@@ -1,4 +1,4 @@
-require './lib/models/model'
+require './lib/models/user'
 
 describe User do
 
@@ -42,25 +42,23 @@ describe User do
 
   end
 
-  describe "Registering with no inputs at all" do
-    before do
-      @user = User.new()
-    end
-
-    it 'throws an error if we do not create a user' do
-      expect{@user.save}.to raise_error("No user information entered.")
-    end
-
-  end
+  # describe "Registering with no inputs at all" do
+  #   before do
+  #     @user = User.new()
+  #   end
+  #
+  #   it 'throws an error if we do not create a user' do
+  #     expect{@user.save}.to raise_error("No user information entered.")
+  #   end
+  #
+  # end
 
   describe 'Registering with no username' do
     before do
       @user = User.new(password: "jumpingbeans")
     end
 
-    it 'should throw an error if we try to create a user with no username' do
-      expect{@user.save}.to raise_error("you need to enter a username")
-    end
+    it {is_expected.to validate_presence_of(:username)}
   end
 
   describe "Registering with no password" do
@@ -68,9 +66,7 @@ describe User do
       @user = User.new(username: "mitchell")
     end
 
-    it 'should throw an error if we try to create a user with no password' do
-      expect{@user.save}.to raise_error("you need to enter a password")
-    end
+    it {is_expected.to validate_presence_of(:password)}
   end
 
   describe 'User tries to register with duplicate username' do
@@ -80,9 +76,7 @@ describe User do
       @anotheruser = User.new(username: "user", password: "1234")
     end
 
-    it 'throws an error if we try to register a user already in the system' do
-      expect{@anotheruser.save}.to raise_error("Username already exists.")
-    end
+    it {is_expected.to validate_uniqueness_of(:username)}
 
 
   end
