@@ -10,7 +10,7 @@ it 'should have a name' do
 end
 
 it 'should have a price' do
-  
+  expect(Dish.first(name: @dish.name).price).to eq 70
 end
 
 it 'should have a category' do
