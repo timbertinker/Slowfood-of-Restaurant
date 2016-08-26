@@ -5,8 +5,8 @@ Feature: As a restaurant Owner
 Scenario: Allows a restaurant owner to add a dish
   Given I am on the "dishes page" now
   Then I should see "add a dish"
-  When I fill in "category" with "starter"
-  And I fill in "name" with "garlic bread"
+  When I select "Starter" from "category"
+  And I fill in "name" with "Garlic Bread"
   And I fill in "price" with 50
-  And I click "add dish" button
-  Then I should see "dish successfully added"
+  And I click "Add Dish" button
+  Then I should see "Dish successfully added"
