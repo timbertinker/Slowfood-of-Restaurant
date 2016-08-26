@@ -59,12 +59,17 @@ describe User do
     it {is_expected.to validate_presence_of(:username)}
   end
 
-  describe "Registering with no password" do
+  describe "Registering with no or too-short password" do
     before do
-      @user = User.new(username: "mitchell")
+      @user = User.new(username: "mi")
     end
 
     it {is_expected.to validate_presence_of(:password)}
+
+    it 'is expected to throw an error if a tiny password is entered' do
+      # Thomas said to forget this test.
+    end
+
   end
 
   describe 'User tries to register with duplicate username' do

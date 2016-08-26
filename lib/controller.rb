@@ -61,7 +61,6 @@ class SlowFood < Sinatra::Base
       redirect '/'
     else
       redirect session[:return_to]
-      # Perhaps we need a return to '/' here?
     end
   end
 
