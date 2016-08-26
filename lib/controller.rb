@@ -10,11 +10,14 @@ class SlowFood < Sinatra::Base
   register Sinatra::Warden
   set :session_secret, "supersecret"
 
+
+  #Create a test User
   # if User.count == 0
   #  @user = User.create(username: "admin")
   #  @user.password = "admin"
   #  @user.save
   # end
+
 
   use Warden::Manager do |config|
     # Tell Warden how to save our User info into a session.
@@ -50,15 +53,26 @@ class SlowFood < Sinatra::Base
     erb :login
   end
 
+<<<<<<< HEAD
   get '/auth/register' do
     erb :register
   end
+||||||| merged common ancestors
+  # Login in should direct to logged-in page where you can add food, etc.
+=======
+  get '/dish-creation' do
+    erb :dish_creation
+  end
+
+  # Login in should direct to logged-in page where you can add food, etc.
+>>>>>>> 1944e9066d85ccf547655b529a19056e4fe58f49
 
   post '/auth/login' do
     env['warden'].authenticate!
     flash[:success] = "Successfully logged in #{current_user.username}"
     if session[:return_to].nil?
       redirect '/'
+
     else
       redirect session[:return_to]
     end
@@ -96,6 +110,19 @@ class SlowFood < Sinatra::Base
     # Set the error and use a fallback if the message is not defined
     flash[:error] = env['warden.options'][:message] || 'You must log in'
     redirect '/auth/login'
+  end
+
+  post '/dish-creation' do
+    @dish = Dish.new(name: params['dish']['name'], category: params['dish']['category'], price: params['dish']['price'])
+
+    begin
+      @dish.save
+      flash[:success] = 'Dish successfully added'
+      redirect session[:return_to]
+
+    rescue
+      flash[:error] = 'Dish not added'
+    end
   end
 
   get '/protected' do
