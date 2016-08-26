@@ -13,8 +13,7 @@ describe User do
       expect(@user.authenticate("123")).to eq true
     end
 
-    #this test is a false positive:
-    xit 'throws an error when the wrong password is entered' do
+    it 'throws an error when the wrong password is entered' do
       expect{@user.authenticate("monkeys")}.to raise_error("That username and password combination does not exist")
     end
 
@@ -72,5 +71,19 @@ describe User do
     it 'should throw an error if we try to create a user with no password' do
       expect{@user.save}.to raise_error("you need to enter a password")
     end
+  end
+
+  describe 'User tries to register with duplicate username' do
+    before do
+      @user = User.new(username: "user", password: "123")
+      @user.save
+      @anotheruser = User.new(username: "user", password: "1234")
+    end
+
+    it 'throws an error if we try to register a user already in the system' do
+      expect{@anotheruser.save}.to raise_error("Username already exists.")
+    end
+
+
   end
 end

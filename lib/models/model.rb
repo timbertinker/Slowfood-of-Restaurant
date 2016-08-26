@@ -16,21 +16,15 @@ class User
       raise "you need to enter a username"
     elsif self.password.nil?
       raise "you need to enter a password"
-    else
-      # register the user. Possibly some or all of this:
-      # @user = User.new
-      # @user.username = params['user']['username']
-      # @user.password = params['user']['password']
-      # @user.save
-      # env['warden'].authenticate!
-      # flash[:success] = "Welcome to our restaurant, #{@user.username}!"
-      # redirect '/'
+    elsif User.first(username: self.username) != nil
+      raise "Username already exists."
+    # else
+      # the user will be saved in the table
     end
   end
 
   # We don't actually use this method anywhere. Should it be connected to Warden? Or should we just get rid of it?
   def authenticate(attempted_password)
-    binding.pry
     if self.password == attempted_password
       true
     else
