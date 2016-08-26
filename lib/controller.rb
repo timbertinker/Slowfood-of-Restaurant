@@ -60,10 +60,7 @@ class SlowFood < Sinatra::Base
   post '/auth/login' do
     env['warden'].authenticate!
     flash[:success] = "Successfully logged in #{current_user.username}"
-    if current_user.admin = true
-      redirect '/protected'
-
-    elsif session[:return_to].nil?
+    if session[:return_to].nil?
       redirect '/'
 
     else
@@ -85,6 +82,19 @@ class SlowFood < Sinatra::Base
     # Set the error and use a fallback if the message is not defined
     flash[:error] = env['warden.options'][:message] || 'You must log in'
     redirect '/auth/login'
+  end
+
+  post '/dish-creation' do
+    @dish = Dish.new(name: params['dish']['name'], category: params['dish']['category'], price: params['dish']['price'])
+
+    begin
+      @dish.save
+      flash[:success] = 'Dish successfully added'
+      redirect session[:return_to]
+
+    rescue
+      flash[:error] = 'Dish not added'
+    end
   end
 
   get '/protected' do

@@ -1,17 +1,17 @@
 <h1>add a dish</h1>
 
-<form>
+<form action="/dish-creation" method="post">
   <label for="category">Category</label>
-  <select id="category" name="category">
+  <select id="category" name="dish[category]">
     <option value="starter">Starter</option>
     <option value="main">Main</option>
     <option value="dessert">Dessert</option>
   </select>
   <p>
     <label for="name">Dish Name:</label>
-    <input type="text" id="name" />
+    <input type="text" name="dish[name]" id="name" />
     <label for="price">Dish Price:</label>
-    <input type="number" id="price" />
+    <input type="number" name="dish[price]" id="price" />
   </p>
 
   <button type="submit" value="Add Dish">
