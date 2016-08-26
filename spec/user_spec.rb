@@ -42,16 +42,14 @@ describe User do
 
   end
 
-  # describe "Registering with no inputs at all" do
-  #   before do
-  #     @user = User.new()
-  #   end
-  #
-  #   it 'throws an error if we do not create a user' do
-  #     expect{@user.save}.to raise_error("No user information entered.")
-  #   end
-  #
-  # end
+  describe "Registering with no inputs at all" do
+    before do
+      @user = User.new()
+    end
+
+    it {is_expected.to validate_presence_of(:username)}
+
+  end
 
   describe 'Registering with no username' do
     before do
