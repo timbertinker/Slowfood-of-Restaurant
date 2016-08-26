@@ -6,11 +6,11 @@ describe Dish do
   end
 
 it 'should have a name' do
-  #expect
+  expect(Dish.first(name: @dish.name).name).to eq "salad"
 end
 
 it 'should have a price' do
-
+  
 end
 
 it 'should have a category' do
