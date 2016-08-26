@@ -11,11 +11,11 @@ class SlowFood < Sinatra::Base
   set :session_secret, "supersecret"
 
   #Create a test User
-  if User.count == 0
-   @user = User.create(username: "user")
-   @user.password = "user"
-   @user.save
-  end
+  # if User.count == 0
+  #  @user = User.create(username: "admin")
+  #  @user.password = "admin"
+  #  @user.save
+  # end
 
   use Warden::Manager do |config|
     # Tell Warden how to save our User info into a session.
@@ -49,6 +49,10 @@ class SlowFood < Sinatra::Base
 
   get '/auth/login' do
     erb :login
+  end
+
+  get '/dish-creation' do
+    erb :dish_creation
   end
 
   # Login in should direct to logged-in page where you can add food, etc.
