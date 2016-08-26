@@ -53,19 +53,9 @@ class SlowFood < Sinatra::Base
     erb :login
   end
 
-<<<<<<< HEAD
   get '/auth/register' do
     erb :register
   end
-||||||| merged common ancestors
-  # Login in should direct to logged-in page where you can add food, etc.
-=======
-  get '/dish-creation' do
-    erb :dish_creation
-  end
-
-  # Login in should direct to logged-in page where you can add food, etc.
->>>>>>> 1944e9066d85ccf547655b529a19056e4fe58f49
 
   post '/auth/login' do
     env['warden'].authenticate!
