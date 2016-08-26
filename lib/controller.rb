@@ -68,14 +68,18 @@ class SlowFood < Sinatra::Base
   post '/auth/register' do
     @user = User.new(username: params['user']['username'],
      password: verify_password(params))
-     binding.pry
      begin
        @user.save
        env['warden'].authenticate!
        flash[:success] = "Welcome to our restaurant, #{@user.username}!"
        redirect '/' # later we'll change this to dishes so they don't go back to the home page
      rescue
-       flash[:error] = @user.errors[1]
+       @user.errors.keys.each do |key|
+         @user.errors[key].each do |error|
+        flash[:error] = error
+        end
+       end
+       redirect '/auth/register'
      end
 
   end
