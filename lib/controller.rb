@@ -3,12 +3,6 @@ Bundler.require
 Dir[File.join(File.dirname(__FILE__), 'models', '*.rb')].each { |file| require file }
 require_relative 'helpers/data_mapper'
 require_relative 'helpers/warden'
-require 'pry'
-
-
-
-
-
 
 class SlowFood < Sinatra::Base
   enable :sessions
@@ -16,13 +10,14 @@ class SlowFood < Sinatra::Base
   register Sinatra::Warden
   set :session_secret, "supersecret"
 
-  #binding.pry
+
   #Create a test User
-  if User.count == 0
-   @user = User.create(username: "admin")
-   @user.password = "admin"
-   @user.save
-  end
+  # if User.count == 0
+  #  @user = User.create(username: "admin")
+  #  @user.password = "admin"
+  #  @user.save
+  # end
+
 
   use Warden::Manager do |config|
     # Tell Warden how to save our User info into a session.
@@ -58,14 +53,38 @@ class SlowFood < Sinatra::Base
     erb :login
   end
 
+  get '/auth/register' do
+    erb :register
+  end
+
   post '/auth/login' do
     env['warden'].authenticate!
     flash[:success] = "Successfully logged in #{current_user.username}"
     if session[:return_to].nil?
       redirect '/'
+
     else
       redirect session[:return_to]
     end
+  end
+
+  post '/auth/register' do
+    @user = User.new(username: params['user']['username'],
+     password: verify_password(params))
+     begin
+       @user.save
+       env['warden'].authenticate!
+       flash[:success] = "Welcome to our restaurant, #{@user.username}!"
+       redirect '/' # later we'll change this to dishes so they don't go back to the home page
+     rescue
+       @user.errors.keys.each do |key|
+         @user.errors[key].each do |error|
+        flash[:error] = error
+        end
+       end
+       redirect '/auth/register'
+     end
+
   end
 
   get '/auth/logout' do
@@ -83,9 +102,27 @@ class SlowFood < Sinatra::Base
     redirect '/auth/login'
   end
 
+  post '/dish-creation' do
+    @dish = Dish.new(name: params['dish']['name'], category: params['dish']['category'], price: params['dish']['price'])
+
+    begin
+      @dish.save
+      flash[:success] = 'Dish successfully added'
+      redirect session[:return_to]
+
+    rescue
+      flash[:error] = 'Dish not added'
+    end
+  end
+
   get '/protected' do
     env['warden'].authenticate!
 
     erb :protected
+  end
+
+
+  def verify_password(params)
+    params['user']['password'] unless params['user']['password'].empty?
   end
 end
