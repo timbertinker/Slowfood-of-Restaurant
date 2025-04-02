@@ -11,7 +11,6 @@ The first version of the application has limited functionality
 * Each Dish is a Starter, Main course or Dessert
 * Visitors of the site can add Dishes to an Order
 * Order need to calculate a Total price and a Pick up time (30 minutes)
-
 Nothing else should be considered or implemented.
 
 #### Tools
